@@ -413,6 +413,13 @@ function GetOSVersion {
         os_CODENAME=$(awk '/VERSION=/' /etc/os-release | sed 's/VERSION=//' | sed -r 's/\"|\(|\)//g' | awk '{print $2}')
         os_RELEASE=$(awk '/VERSION_ID=/' /etc/os-release | sed 's/VERSION_ID=//' | sed 's/\"//g')
     fi
+    # Special case: Raspberry. Still a debian.
+    elif [[ -f /etc/debian_version ]]; then
+        os_VENDOR="Debian"
+        os_PACKAGE="deb"
+        os_CODENAME=$(awk '/VERSION=/' /etc/os-release | sed 's/VERSION=//' | sed -r 's/\"|\(|\)//g' | awk '{print $2}')
+        os_RELEASE=$(awk '/VERSION_ID=/' /etc/os-release | sed 's/VERSION_ID=//' | sed 's/\"//g')
+    fi
     export os_VENDOR os_RELEASE os_UPDATE os_PACKAGE os_CODENAME
 }
 
