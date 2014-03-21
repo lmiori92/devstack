@@ -1,7 +1,7 @@
 # Stuff for diablo volumes
 lvm2
-open-iscsi
-open-iscsi-utils # Deprecated since quantal dist:precise
+#open-iscsi
+#open-iscsi-utils # Deprecated since quantal dist:precise
 genisoimage
 sysfsutils
 sg3-utils

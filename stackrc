@@ -66,6 +66,10 @@ IDENTITY_API_VERSION=2.0
 # be disabled for automated testing by setting this value to False.
 USE_SCREEN=True
 
+# BUG(ewindisch): Setting to lxc in localrc didn't work for me.
+#                 overriding explicitly here in stack.sh
+LIBVIRT_TYPE=lxc
+
 # allow local overrides of env variables, including repo config
 if [[ -f $RC_DIR/localrc ]]; then
     # Old-style user-supplied config

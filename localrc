@@ -1,0 +1,16 @@
+FORCE=yes
+disable_service rabbit
+disable_service qpid
+disable_service horizon
+disable_service cinder
+
+disable_service n-novnc
+disable_service n-xvnc
+disable_service n-spice
+disable_service n-cauth
+
+#disable_service mysql
+#disable_service postgresql
+#enable_service sqlite
+
+enable_service zeromq

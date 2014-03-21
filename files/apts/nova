@@ -12,7 +12,7 @@ iptables
 ebtables
 sqlite3
 sudo
-qemu-kvm # NOPRIME
+#qemu-kvm # NOPRIME
 qemu # dist:wheezy,jessie NOPRIME
 libvirt-bin # NOPRIME
 pm-utils
@@ -20,8 +20,8 @@ libjs-jquery-tablesorter # Needed for coverage html reports
 vlan
 curl
 genisoimage # required for config_drive
-rabbitmq-server # NOPRIME
-qpidd # dist:precise NOPRIME
+#rabbitmq-server # NOPRIME
+#qpidd # dist:precise NOPRIME
 socat # used by ajaxterm
 python-mox
 python-paste
@@ -43,4 +43,4 @@ python-boto
 python-kombu
 python-feedparser
 python-iso8601
-python-qpid # dist:precise
+#python-qpid # dist:precise
