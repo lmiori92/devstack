@@ -1,4 +1,5 @@
 FORCE=yes
+LIBVIRT_TYPE=lxc
 disable_service rabbit
 disable_service qpid
 disable_service horizon
