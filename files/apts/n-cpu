@@ -5,4 +5,4 @@ lvm2
 genisoimage
 sysfsutils
 sg3-utils
-python-guestfs # NOPRIME
+#python-guestfs # NOPRIME
