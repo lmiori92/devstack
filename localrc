@@ -1,5 +1,6 @@
 FORCE=yes
 LIBVIRT_TYPE=lxc
+ENABLED_SERVICES=g-api,g-reg,key,n-api,n-crt,n-obj,n-cpu,n-cond,c-sch,c-api,c-vol,n-sch
 disable_service rabbit
 disable_service qpid
 disable_service horizon
@@ -15,3 +16,40 @@ disable_service n-cauth
 #enable_service sqlite
 
 enable_service zeromq
+DATABASE_PASSWORD=admin
+SERVICE_TOKEN=demo
+SERVICE_PASSWORD=demo
+ADMIN_PASSWORD=demo
+
+#Network 
+HOST_IP=192.168.0.105
+FIXED_RANGE=192.168.0.105/24
+FIXED_NETWORK_SIZE=256
+NETWORK_GATEWAY=192.168.0.92
+PUBLIC_INTERFACE=eth0
+ 
+#Neutron settings if FlatNetwork for Baremetal
+PHYSICAL_NETWORK=ctlplane
+OVS_PHYSICAL_BRIDGE=br-ctlplane
+ALLOCATION_POOL="start=192.168.0.110,end=192.168.0.120"
+
+# Baremetal Network settings
+BM_DNSMASQ_IFACE=br-ctlplane
+BM_DNSMASQ_RANGE=192.168.0.110,192.168.0.120
+
+# Global baremetal settings for real nodes
+BM_POWER_MANAGER=nova.virt.baremetal.ipmi.IPMI
+VIRT_DRIVER=baremetal
+BM_DNSMASQ_DNS=8.8.8.8
+
+# Change at least BM_FIRST_MAC to match the MAC address of the baremetal node to deploy
+BM_FIRST_MAC=b8:27:eb:33:e5:c8
+BM_SECOND_MAC=11:22:33:44:55:66
+
+# IPMI credentials for the baremetal node to deploy
+BM_PM_ADDR=192.168.0.105
+BM_PM_USER=pi
+BM_PM_PASS=raspberry
+
+# Make sure to match your Devstack hostname
+BM_HOSTNAME=devstack

@@ -75,7 +75,7 @@ function install_nova_hypervisor {
     if [[ "$LIBVIRT_TYPE" == "lxc" ]]; then
         if is_ubuntu; then
             if [[ "$DISTRO" > natty ]]; then
-                install_package cgroup-lite
+#                install_package cgroup-lite
             fi
         else
             ### FIXME(dtroyer): figure this out
