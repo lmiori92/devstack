@@ -2,15 +2,20 @@ FORCE=yes
 # this is very interesting: it is to run devstack without connection, thus avoiding package download and reinstall
 OFFLINE=True
 
-LIBVIRT_TYPE=lxc
-ENABLED_SERVICES=key,n-api,n-crt,n-obj,n-cpu,n-cond,n-sch,keystone,swift
+#LIBVIRT_TYPE=lxc
+
+DATABASE_PASSWORD=admin
+DATABASE_TYPE=mysql
+SERVICE_TOKEN=demo
+SERVICE_PASSWORD=demo
+ADMIN_PASSWORD=demo
 
 disable_service c-api c-sch c-vol # Disable Cinder service
 disable_service g-api g-reg # Disable Glance services
 
 disable_service rabbit
 disable_service qpid
-disable_service horizon
+#disable_service horizon
 disable_service cinder
 
 disable_service n-novnc
@@ -24,11 +29,9 @@ disable_service n-cauth
 enable_service mysql
 
 enable_service zeromq
-DATABASE_PASSWORD=admin
-DATABASE_TYPE=mysql
-SERVICE_TOKEN=demo
-SERVICE_PASSWORD=demo
-ADMIN_PASSWORD=demo
+
+ENABLED_SERVICES=key,n-api,n-crt,n-obj,n-cpu,n-cond,n-sch,keystone,swift,horizon,$DATABASE_TYPE
+
 
 #Network 
 HOST_IP=192.168.0.105
