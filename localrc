@@ -10,6 +10,7 @@ SERVICE_TOKEN=demo
 SERVICE_PASSWORD=demo
 ADMIN_PASSWORD=demo
 
+ENABLED_SERVICES=key,n-api,n-crt,n-obj,n-cpu,n-cond,n-sch,keystone,swift,horizon,$DATABASE_TYPE
 disable_service c-api c-sch c-vol # Disable Cinder service
 disable_service g-api g-reg # Disable Glance services
 
@@ -29,9 +30,6 @@ disable_service n-cauth
 enable_service mysql
 
 enable_service zeromq
-
-ENABLED_SERVICES=key,n-api,n-crt,n-obj,n-cpu,n-cond,n-sch,keystone,swift,horizon,$DATABASE_TYPE
-
 
 #Network 
 HOST_IP=192.168.0.105
