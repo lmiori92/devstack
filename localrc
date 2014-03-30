@@ -1,6 +1,6 @@
 FORCE=yes
 LIBVIRT_TYPE=lxc
-ENABLED_SERVICES=g-api,g-reg,key,n-api,n-crt,n-obj,n-cpu,n-cond,c-sch,c-api,c-vol,n-sch
+ENABLED_SERVICES=g-api,g-reg,key,n-api,n-crt,n-obj,n-cpu,n-cond,c-sch,c-api,c-vol,n-sch,keystone,swift
 disable_service rabbit
 disable_service qpid
 disable_service horizon
@@ -14,9 +14,11 @@ disable_service n-cauth
 #disable_service mysql
 #disable_service postgresql
 #enable_service sqlite
+enable_service mysql
 
 enable_service zeromq
 DATABASE_PASSWORD=admin
+DATABASE_TYPE=mysql
 SERVICE_TOKEN=demo
 SERVICE_PASSWORD=demo
 ADMIN_PASSWORD=demo
