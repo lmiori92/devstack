@@ -1,6 +1,8 @@
 FORCE=yes
 # this is very interesting: it is to run devstack without connection, thus avoiding package download and reinstall
-OFFLINE=False
+OFFLINE=True
+
+#LIBVIRT_TYPE=lxc
 
 DATABASE_PASSWORD=admin
 DATABASE_TYPE=mysql
@@ -8,16 +10,13 @@ SERVICE_TOKEN=demo
 SERVICE_PASSWORD=demo
 ADMIN_PASSWORD=demo
 
-ENABLED_SERVICES=key,keystone,s-proxy,s-object,s-container,s-account,$DATABASE_TYPE
-
-enable_service s-proxy s-object s-container s-account
-
-#disable_service c-api c-sch c-vol # Disable Cinder service
+ENABLED_SERVICES=key,n-api,n-crt,n-obj,n-cpu,n-cond,n-sch,keystone,swift,horizon,$DATABASE_TYPE
+disable_service c-api c-sch c-vol # Disable Cinder service
 disable_service g-api g-reg # Disable Glance services
 
 disable_service rabbit
 disable_service qpid
-disable_service horizon
+#disable_service horizon
 disable_service cinder
 
 disable_service n-novnc
@@ -30,35 +29,25 @@ disable_service n-cauth
 #enable_service sqlite
 enable_service mysql
 
-disable_service zeromq
+enable_service zeromq
 
 #Network
 ## Controller Host ##
-HOST_IP=`LANG=C ifconfig eth0 | awk '/inet addr/ {split ($2,A,":"); print A[2]}'`
-
-# Multiple host configuration
-# TODO make this a litte "dynamic"
-MULTI_HOST=True
-MYSQL_HOST=10.10.242.6
-SERVICE_HOST=10.10.242.6
-
-FIXED_RANGE=10.10.240.0/22
+HOST_IP=192.168.0.105
+MULTI_HOST=1
+FIXED_RANGE=192.168.0.105/24
 FIXED_NETWORK_SIZE=256
-NETWORK_GATEWAY=10.10.243.254
+NETWORK_GATEWAY=192.168.0.92
 PUBLIC_INTERFACE=eth0
-
-## Swift configuration ##
-SWIFT_HASH=45b5d8ffcab223340d17
-SWIFT_REPLICAS=3
-
+ 
 #Neutron settings if FlatNetwork for Baremetal
 PHYSICAL_NETWORK=ctlplane
 OVS_PHYSICAL_BRIDGE=br-ctlplane
-ALLOCATION_POOL="start=10.10.242.50,end=10.10.242.200"
+ALLOCATION_POOL="start=192.168.0.110,end=192.168.0.120"
 
 # Baremetal Network settings
 BM_DNSMASQ_IFACE=br-ctlplane
-BM_DNSMASQ_RANGE=10.10.242.50,10.10.242.200
+BM_DNSMASQ_RANGE=192.168.0.110,192.168.0.120
 
 # Global baremetal settings for real nodes
 BM_POWER_MANAGER=nova.virt.baremetal.ipmi.IPMI
@@ -70,7 +59,7 @@ BM_FIRST_MAC=b8:27:eb:33:e5:c8
 BM_SECOND_MAC=11:22:33:44:55:66
 
 # IPMI credentials for the baremetal node to deploy
-BM_PM_ADDR=$HOST_IP
+BM_PM_ADDR=192.168.0.105
 BM_PM_USER=pi
 BM_PM_PASS=raspberry
 

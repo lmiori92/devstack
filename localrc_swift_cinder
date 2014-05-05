@@ -8,17 +8,14 @@ SERVICE_TOKEN=demo
 SERVICE_PASSWORD=demo
 ADMIN_PASSWORD=demo
 
-ENABLED_SERVICES=key,keystone,s-proxy,s-object,s-container,s-account,$DATABASE_TYPE
-
-enable_service s-proxy s-object s-container s-account
-
+ENABLED_SERVICES=key,cinder,keystone,s-proxy,s-object,s-container,s-account,horizon,zeromq,$DATABASE_TYPE
 #disable_service c-api c-sch c-vol # Disable Cinder service
 disable_service g-api g-reg # Disable Glance services
 
 disable_service rabbit
 disable_service qpid
-disable_service horizon
-disable_service cinder
+#disable_service horizon
+#disable_service cinder
 
 disable_service n-novnc
 disable_service n-xvnc
@@ -30,27 +27,18 @@ disable_service n-cauth
 #enable_service sqlite
 enable_service mysql
 
-disable_service zeromq
+enable_service zeromq
 
 #Network
 ## Controller Host ##
-HOST_IP=`LANG=C ifconfig eth0 | awk '/inet addr/ {split ($2,A,":"); print A[2]}'`
-
-# Multiple host configuration
-# TODO make this a litte "dynamic"
-MULTI_HOST=True
-MYSQL_HOST=10.10.242.6
-SERVICE_HOST=10.10.242.6
-
+CURRENT_IP=`LANG=C ifconfig eth0 | awk '/inet addr/ {split ($2,A,":"); print A[2]}'`
+HOST_IP=$CURRENT_IP
+MULTI_HOST=1
 FIXED_RANGE=10.10.240.0/22
 FIXED_NETWORK_SIZE=256
 NETWORK_GATEWAY=10.10.243.254
 PUBLIC_INTERFACE=eth0
-
-## Swift configuration ##
-SWIFT_HASH=45b5d8ffcab223340d17
-SWIFT_REPLICAS=3
-
+ 
 #Neutron settings if FlatNetwork for Baremetal
 PHYSICAL_NETWORK=ctlplane
 OVS_PHYSICAL_BRIDGE=br-ctlplane
@@ -82,3 +70,7 @@ LOGFILE=/opt/stack/logs/stack.sh.log
 VERBOSE=True
 LOG_COLOR=False
 SCREEN_LOGDIR=/opt/stack/logs
+
+## Swift configuration ##
+SWIFT_HASH=45b5d8ffcab223340d17
+SWIFT_LOOPBACK_DISK_SIZE_DEFAULT=1G
